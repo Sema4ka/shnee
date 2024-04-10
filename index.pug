@@ -1,0 +1,124 @@
+doctype html
+mixin card(cardData)
+    .card(style= `${cardData.color}`) 
+        img(src=cardData.src)
+        p
+            b= cardData.head
+        p= cardData.text
+        if cardData.read
+            .read Читать все
+        
+
+
+
+
+html
+    head
+        link(rel="stylesheet" href="style.css")
+        script(src="script.js")
+    body
+        include nav
+        .header-block
+            .header-text-block
+                .big-header-text Доступная уборка квартир в Москве без опасных химикатов
+                .small-header-text
+                    |Предоставляем комплексные услуги по поддержанию
+                    br
+                    |чистоты в жилых помещениях
+            .count-block
+                .count-button 
+                    |Поддерживающая
+                    img(src="assets/arrow_down.png")
+                .count-button
+                    img(src="assets/pluse.png")
+                    |1-комнатная
+                    img(src="assets/minus.png")
+                .count-button
+                    img(src="assets/pluse.png")
+                    |1 санузел
+                    img(src="assets/minus.png")
+                .count-button(style="background-color:#FFB546")
+                    |Рассчитать стоимость
+
+        .about-us-block
+            - let data1 = {src:"assets/us1.png", head:'Квалифицированные клинеры', text:'Все сотрудники прошли программу обучения, разработанную по европейскому стандарту «ESIS»', color:'color: black'};
+            - let data2 = {src:"assets/us2.png", head:'Страховка имущества', text:'На время проведения работ страхуем имущество заказчиков на 300 000 ₽', color:'color: black'};
+            - let data3 = {src:"assets/us3.png", head:'Профессиональные средства', text:'Используем сертифицированные средства, которые отвечают всем требованиям безопасности', color:'color: black'};
+            - let data = [data1, data2, data3];
+            .about-us-cards
+                for i in data
+                    +card(i)
+
+        .services-block
+            .services-header 
+                .services-header-text 
+                    p 
+                        b Основные виды услуг
+                    p 
+                        |Вы можете заказать несколько видов уборки
+                button.services-count-button Рассчитать стоимость
+            .services-cards
+                - data1 = {src:"assets/services1.png", head:'Поддерживающая', text:'Влажная уборка всех поверхностей без сложных загрязнений. В стоимость входит вынос бытового мусора', color:'color: white'};
+                - data2 = {src:"assets/services2.png", head:'Генеральная', text:'Полная уборка квартиры, включая мытье окон, потолка, влажную чистку ковра и мягкой мебели', color:'color: white'};
+                - data3 = {src:"assets/services3.png", head:'После ремонта', text:'Уборка квартиры после строительных работ с утилизацией строительного мусора до 100 кг', color:'color: white'};
+                - let data4 = {src:"assets/services4.png", head:'Уборка после дезинфекции', text:'Проведение генеральной уборки, после дезинфекции с использованием специализированных средств для уборки', color:'color: white'};
+                - data = [data1, data2, data3, data4];
+                for i in data
+                    +card(i)
+
+        .reviews-block
+            .reviews-header 
+                    |Почитайте отзывы
+                    br 
+                    |наших клиентов
+            .reviews-cards
+                - data1={src:"assets/rev1.png", head:"Валентина Лепетушкина", text:"Огромное спасибо клининговой компании «SHINEEE». Проводили ремонт в детской комнате, к приезду детей все должно было быть готово. Но после ремонта осталось очень много строительного му...", read: true};
+                - data2={src:"assets/rev2.png", head:"Дмитрий Авгеньев", text:"Долгое время сдаю квартиру в аренду, последние жильцы оставили после себя очень много грязи, а следующие должны были заселиться на днях. Было принято решение обратиться за ..", read: true};
+                - data = [data1, data2];
+                img(src="assets/arrow-left-circle.png")
+                .reviews-cards-wrap
+                    for i in data
+                        +card(i)
+                img(src="assets/arrow-right-circle.png")
+            button.reviews-button Больше отзывов
+
+        .sell-block 
+            .sell-get
+                .sell-wrapper
+                    .sell-get-header
+                        |Получите скидку 20%
+                        br 
+                        |на первую уборку
+                    |Оставьте данные, мы отправим промокод на почту
+                    form(id="send" onsubmit="send(event);")
+                        input.sell-input(placeholder="Имя", type="text", id="username")
+                        input.sell-input(placeholder="E-mail", type="text", id="useremail")
+                        button.sell-send(type="sumbit") Отправить
+                    label
+                        input.sell-agree-check(type="checkbox" name="agree") 
+                        label(for="agree")
+                        |Даю согласие на обработку данных
+
+
+            img(src="assets/sell_pic.png")
+
+
+        .footer
+            .footer-header-block
+                .footer-header 
+                    b SHINEEE
+                |Уборка квартир в Москве
+            .footer-nav
+                p Преимущества
+                p Отзывы
+                p Услуги
+                p Контакты
+                p Политика 
+                    br 
+                    |конфиденциальности
+                p Соглашение на обработку персональных данных
+            .footer-call
+                button.footer-order Заказать звонок
+                .footer-number +7 495 788 08 08
+                    .footer-mail mail@shinee.com
+
